@@ -1,0 +1,133 @@
+
+
+ScreenManager:
+    MenuScreen:
+    ProfileScreen:
+
+<ProfileScreen>:
+    name: "profile"
+
+    MDCard:
+        size_hint: None, None
+        size: 500, 500
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+    MDRoundFlatButton:
+        text: "Back to submission"
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5}
+        on_press:
+            root.manager.current = 'menu'
+        on_release:
+            root.manager.transition.direction = "left"
+
+
+<FirstScreen>:
+    name: "info"
+
+    MDCard:
+        size_hint: None, None
+        size: 500, 500
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+    MDRoundFlatButton:
+        text: "back to submission"
+
+        font_size: 18
+        pos_hint: {"center_x": 0.5}
+        on_press:
+            root.manager.current = 'menu'
+        on_release:
+            root.manager.transition.direction = "left"
+
+
+<MenuScreen>:
+    name: "menu"
+    start: start
+    user: user
+    trash: trash
+    email: email
+    MDCard:
+        size_hint: None, None
+        size: 600, 600
+
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+
+        orientation: 'vertical'
+
+        MDLabel:
+            id: start
+            text: "Beatification And Gamification"
+            font_size: 30
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextField:
+            id: user
+            hint_text: "Name"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: trash
+            hint_text: "Trash collected"
+            icon_right: "trash-can"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: email
+            hint_text: "Email"
+            icon_right: "email"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDRoundFlatButton:
+            text: "Submit"
+
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_press:
+                root.manager.current = 'profile'
+            on_release:
+                root.send_data(email, user, trash)
+                root.manager.transition.direction = "left"
+
+        MDRoundFlatButton:
+            text: "Click for more info"
+
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_press:
+                root.manager.current = 'profile'
+            on_release:
+                root.manager.transition.direction = "left"
+
+
+        MDRoundFlatButton:
+            text: "Clear"
+
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_press: root.clear()
+
